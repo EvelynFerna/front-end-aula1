@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo de Reajuste Salarial</title>
+    <style>
+       body{
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            display: flex;
+            font-size: 1.5em;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input, button{
+            width: 200px;
+            padding: 5px;
+            margin: 10px;
+            border-radius: 5px rgb(41 , 188, 224);
+        }
+        p{
+            width: 400px;
+            height: 100px;
+            border: solid 1px;
+            padding: 10px;
+            color: rgb(41 , 188, 224);
+        }
+
+        h1{
+            color:  rgb(41 , 188, 224);
+        }
+    </style>
+</head>
+<body>
+    <h1>Cálculo de Reajuste Salarial</h1>
+    <input type="number" id="salario" step="0.01" placeholder="Salário Atual">
+    <button onclick="CalcularReajuste()">Calcular Reajuste</button>
+    <p id="resultado">Resultado</p>
+
+    <script>
+        let resultado = document.getElementById('resultado');
+
+        function CalcularReajuste() {
+            let salario = Number(document.getElementById('salario').value);
+            let aumento = 0;
+
+            if (salario >= 1500 && salario < 1750) {
+                aumento = salario * 0.15;
+            } else if (salario >= 1750 && salario < 2000) {
+                aumento = salario * 0.12;
+            } else if (salario >= 2000 && salario < 3000) {
+                aumento = salario * 0.09;
+            } else if (salario >= 3000) {
+                aumento = salario * 0.06;
+            } else {
+                resultado.innerHTML = "Salário fora das faixas previstas para reajuste.";
+                return;
+            }
+
+            let novoSalario = salario + aumento;
+
+            resultado.innerHTML = `Aumento de R$ ${aumento.toFixed(2).replace('.', ',')}<br>`;
+            resultado.innerHTML += `Novo Salário: R$ ${novoSalario.toFixed(2).replace('.', ',')}`;
+        }
+    </script>
+</body>
+</html>

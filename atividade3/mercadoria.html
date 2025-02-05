@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo de Aumento de Preço</title>
+    <style>
+        body{
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            display: flex;
+            font-size: 1.5em;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input, button{
+            width: 200px;
+            padding: 5px;
+            margin: 10px;
+            border-radius: 5px rgb(41 , 188, 224);
+        }
+        p{
+            width: 400px;
+            height: 100px;
+            border: solid 1px;
+            padding: 10px;
+            color: rgb(41 , 188, 224);
+        }
+
+        h1{
+            color:  rgb(41 , 188, 224);
+        }
+    </style>
+</head>
+<body>
+    <h1>Cálculo de Aumento de Preço</h1>
+    <input type="text" id="nome" placeholder="Nome da mercadoria">
+    <input type="number" id="preco" step="0.01" placeholder="Preço da mercadoria">
+    <button onclick="calcularAumento()">Calcular Aumento</button>
+    <p id="resultado">Resultado</p>
+
+    <script>
+        function calcularAumento() {
+            let nome = document.getElementById('nome').value;
+            let preco = Number(document.getElementById('preco').value);
+            let aumento = 0;
+
+            if (preco < 1000) {
+                aumento = preco * 0.05; 
+            } else {
+                aumento = preco * 0.07; 
+            }
+
+            let novoPreco = preco + aumento;
+
+            document.getElementById('resultado').innerHTML = `
+                Nome da mercadoria: ${nome}<br>
+                Preço original: R$ ${preco.toFixed(2).replace('.', ',')}<br>
+                Aumento: R$ ${aumento.toFixed(2).replace('.', ',')}<br>
+                Novo preço: R$ ${novoPreco.toFixed(2).replace('.', ',')}
+            `;
+        }
+    </script>
+</body>
+</html>

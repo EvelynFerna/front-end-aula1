@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promoção de Loja - Cálculo de Desconto</title>
+    <style>
+        body{
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            display: flex;
+            font-size: 1.5em;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input, button{
+            width: 200px;
+            padding: 5px;
+            margin: 10px;
+            border-radius: 5px rgb(41 , 188, 224);
+        }
+        p{
+            width: 400px;
+            height: 100px;
+            border: solid 1px;
+            padding: 10px;
+            color: rgb(41 , 188, 224);
+        }
+
+        h1{
+            color:  rgb(41 , 188, 224);
+        }
+    </style>
+</head>
+<body>
+    <h1>Promoção de Loja - Cálculo de Desconto</h1>
+    <input type="number" id="preco" step="0.01" placeholder="Preço da Peça">
+    <select id="peca">
+        <option value="camisa">Camisa</option>
+        <option value="bermuda">Bermuda</option>
+        <option value="calca">Calça</option>
+    </select>
+    <button onclick="CalcularDesconto()">Calcular Desconto</button>
+    <p id="resultado">Resultado</p>
+
+    <script>
+        let resultado = document.getElementById('resultado');
+
+        function CalcularDesconto() {
+            let preco = Number(document.getElementById('preco').value);
+            let peca = document.getElementById('peca').value;
+            let desconto = 0;
+
+      
+            if (peca === 'camisa') {
+                desconto = 0.20; 
+            } else if (peca === 'bermuda') {
+                desconto = 0.10; 
+            } else if (peca === 'calca') {
+                desconto = 0.15; 
+            }
+
+            let valorDesconto = preco * desconto;
+            let valorFinal = preco - valorDesconto;
+
+            resultado.innerHTML = `Preço original: R$ ${preco.toFixed(2).replace('.', ',')}<br>`;
+            resultado.innerHTML += `Desconto: R$ ${valorDesconto.toFixed(2).replace('.', ',')}<br>`;
+            resultado.innerHTML += `Valor final: R$ ${valorFinal.toFixed(2).replace('.', ',')}`;
+        }
+    </script>
+</body>
+</html>
